@@ -2,9 +2,7 @@ using System;
 using System.Text.RegularExpressions;
 
 class Program{
-    static bool PalindromCheck(){
-        Console.WriteLine("Enter Input String: ");
-        string inputString = Console.ReadLine();
+    static bool PalindromCheck(string inputString){
         string withoutPunctuations = Regex.Replace(inputString.ToLower(), @"[\p{P}-[.]]+", "");
         string withoutWhiteSpaces = Regex.Replace(withoutPunctuations, @"\s+", "");
 
@@ -24,7 +22,8 @@ class Program{
     }
 
     static void Main(string[] args){
-        bool ans = PalindromCheck();
+        string test = "Saas is";
+        bool ans = PalindromCheck(test);
         Console.WriteLine(ans);
     }
 }

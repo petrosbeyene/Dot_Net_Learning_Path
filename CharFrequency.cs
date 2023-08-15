@@ -1,29 +1,73 @@
+// using System;
+// using System.Collections.Generic;
+// using System.Linq;
+// using System.Text.RegularExpressions;
+
+// class WordFrequencyCounter
+// {
+//     public static Dictionary<string, int> CountWordFrequency(string input)
+//     {
+//         // Convert the input to lowercase and remove punctuation marks
+//         string cleanedInput = Regex.Replace(input.ToLower(), @"[\p{P}-[._]]+", " ");
+        
+//         // Split the cleaned input into words
+//         string[] words = cleanedInput.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+//         // Count the frequency of each word
+//         Dictionary<string, int> wordFrequency = new Dictionary<string, int>();
+//         foreach (string word in words)
+//         {
+//             if (wordFrequency.ContainsKey(word))
+//             {
+//                 wordFrequency[word]++;
+//             }
+//             else
+//             {
+//                 wordFrequency[word] = 1;
+//             }
+//         }
+
+//         return wordFrequency;
+//     }
+
+//     static void Main(string[] args)
+//     {
+//         string input = "This is a test. This is only a test!";
+//         Dictionary<string, int> frequency = CountWordFrequency(input);
+
+//         foreach (var kvp in frequency)
+//         {
+//             Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+//         }
+//     }
+// }
 // See https://aka.ms/new-console-template for more information
 using System;
 using System.Text.RegularExpressions;
 
-namespace CharFrequency{
+namespace wordFrequency{
     class Program{
-        static Dictionary<char, int> countFrequency(){
-            Console.WriteLine("Enter input stirng: ");
-            string inputString = Console.ReadLine();
-            string withoutPunctuations = Regex.Replace(inputString, @"[\p{P}-[.]]+", "");
+        static Dictionary<string, int> countFrequency(string sentence){
+            string modifiedSentence = sentence.Replace(".", "");
+            string withoutPunctuations = Regex.Replace(modifiedSentence, @"[\p{P}-[._]]+", "");
+            string[] words = withoutPunctuations.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            Dictionary<char, int> charFreq = new Dictionary<char, int>();
-            foreach(char c in withoutPunctuations ){
-                if (charFreq.ContainsKey(c)){
-                    charFreq[c] += 1;
+            Dictionary<string, int> wordFrequency = new Dictionary<string, int>();
+            foreach(string word in words ){
+                if (wordFrequency.ContainsKey(word)){
+                    wordFrequency[word] += 1;
                 }
                 else{
-                    charFreq[c] = 1;
+                    wordFrequency[word] = 1;
                 }
             }
 
-            return charFreq;
+            return wordFrequency;
         }
 
         static void Main(string[] args){
-            Dictionary<char, int> ans = countFrequency();
+            string input = "This is a test. This is only a test!"; 
+            Dictionary<string, int> ans = countFrequency(input);
             foreach (var kvp in ans)
             {
                 Console.WriteLine($"Key: {kvp.Key}, Value: {kvp.Value}");
