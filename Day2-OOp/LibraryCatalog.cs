@@ -24,10 +24,10 @@ class Program
 
 class Library
 {
-    public string Name { get; }
-    public string Address { get; }
-    public List<Book> Books { get; } = new List<Book>();
-    public List<MediaItem> MediaItems { get; } = new List<MediaItem>();
+    private string Name { get; }
+    private string Address { get; }
+    private List<Book> Books { get; } = new List<Book>();
+    private List<MediaItem> MediaItems { get; } = new List<MediaItem>();
 
     public Library(string name, string address)
     {
@@ -71,6 +71,7 @@ class Library
         }
     }
 }
+
 
 class Book
 {
